@@ -63,22 +63,29 @@ else:
 
 while True:
     
-    time.sleep(840)
-
-    print(str(pd.datetime.now())[:22])
-    
-    datecheck = str(pd.datetime.now().date())
-    
-    if datecheck != savename:
+    try:
         
-        newGraphs = capData.getGraphs(savefolder)
-        GitUp.updateGraphs(newGraphs)
-        
-        savename = datecheck
-        
+        time.sleep(840)
     
-    capacityData = pd.concat([capacityData,getInfo()])
-    capacityData.to_csv(savefolder+'/'+savename+'cap.csv')
+        print(str(pd.datetime.now())[:22])
+        
+        datecheck = str(pd.datetime.now().date())
+        
+        if datecheck != savename:
+            
+            newGraphs = capData.getGraphs(savefolder)
+            GitUp.updateGraphs(newGraphs)
+            
+            savename = datecheck
+            
+        
+        capacityData = pd.concat([capacityData,getInfo()])
+        capacityData.to_csv(savefolder+'/'+savename+'cap.csv')
+        
+    except:
+        #could do with logging errors or printing them
+        continue
+    
 
     
     

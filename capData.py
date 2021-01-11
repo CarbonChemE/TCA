@@ -146,7 +146,7 @@ def avsByDay(filepath):
 def getGraphs(filepath):
     
 
-    data = avsByDay()
+    data = avsByDay(filepath)
     
     graphN = px.line(data,x='Hour',
                      y='GLA %',color='Day',
