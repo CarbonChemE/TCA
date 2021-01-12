@@ -28,7 +28,7 @@ def grabFiles(filepath='./TCA data'):
     
     files=os.listdir(filepath)
     
-    dfs = [pd.read_csv(filepath+'/'+file,index_col=0,parse_dates=[0,1]) for file in files]
+    dfs = [pd.read_csv(filepath+'/'+file,index_col=0,parse_dates=[0,1]) for file in files if 'git' not in file]
     
     return pd.concat(dfs)
 
