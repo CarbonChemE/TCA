@@ -67,7 +67,7 @@ while True:
         
         time.sleep(840)
     
-        print(str(pd.datetime.now())[:22])
+        #print(str(pd.datetime.now())[:22])
         
         datecheck = str(pd.datetime.now().date())
         
@@ -76,11 +76,14 @@ while True:
             newGraphs = capData.getGraphs(savefolder)
             GitUp.updateGraphs(newGraphs)
             
-            savename = datecheck
+            savename = datecheck # need to save the df and reset it or it will get bigger and bigger and also make the files full of dupication
+            capacityData = getInfo()
             
-        
-        capacityData = pd.concat([capacityData,getInfo()])
+        else:
+            capacityData = pd.concat([capacityData,getInfo()])
+
         capacityData.to_csv(savefolder+'/'+savename+'cap.csv')
+        
         
     except:
         #could do with logging errors or printing them
